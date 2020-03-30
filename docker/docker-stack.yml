@@ -1,0 +1,66 @@
+version: "3.7"
+
+services:
+  db:
+    image: mysql:5.7.29
+    deploy:
+      placement:
+        constraints:
+          - node.platform.os == linux
+          - node.platform.arch == x86_64
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=phpipam"
+      - "MYSQL_USER=phpipam"
+      - "MYSQL_PASSWORD_FILE=/run/secrets/phpipam_db_password"
+      - "MYSQL_ROOT_PASSWORD_FILE=/run/secrets/mysql_root_password"
+    secrets:
+      - phpipam_db_password
+      - mysql_root_password
+    networks:
+      backend:
+        aliases:
+          - db
+  web:
+    image: snorthrop/phpipam:1.4
+    deploy:
+      placement:
+        constraints:
+          - node.platform.os == linux
+          - node.platform.arch == x86_64
+    environment:
+      - "PHPIPAM_VERSION=1.4"
+      - "IPAM_DATABASE_HOST=db"
+      - "PHPIPAM_SOURCE=https://github.com/phpipam/"
+      - "IPAM_DATABASE_USER=phpipam"
+      - "IPAM_DATABASE_NAME=phpipam"
+      - "IPAM_DATABASE_PORT=3306"
+      - "IPAM_DATABASE_WEBHOST="
+      - "IPAM_GMAPS_API_KEY="
+      - "PROXY_ENABLED=false"
+      - "PROXY_SERVER="
+      - "PROXY_PORT="
+      - "PROXY_USER="
+      - "PROXY_PASS="
+      - "PROXY_USE_AUTH=false"
+    ports:
+      - "8080"
+    networks:
+      backend:
+        aliases:
+          - phpipam
+
+networks:
+  backend:
+    driver: overlay
+    attachable: true
+
+volumes:
+  mysql-data:
+
+secrets:
+  phpipam_db_password:
+    file: ./mysql/phpipam_password.txt
+  mysql_root_password:
+    file: ./mysql/mysql_root_password.txt
