@@ -10,13 +10,13 @@ $config = Config::ValueOf('config');
 /**
  * proxy to use for every internet access like update check
  ******************************/
-if (Config::ValueOf('PROXY_ENABLED') == true) {
+if (Config::ValueOf('proxy_enabled') == true) {
 	$proxy_settings = [
-		'proxy'           => 'tcp://'.Config::ValueOf('PROXY_SERVER').':'.Config::ValueOf('PROXY_PORT'),
+		'proxy'           => 'tcp://'.Config::ValueOf('proxy_server').':'.Config::ValueOf('proxy_port'),
 		'request_fulluri' => true];
 
-	if (Config::ValueOf('PROXY_USE_AUTH') == true) {
-		$proxy_auth = base64_encode(Config::ValueOf('PROXY_USER').':'.Config::ValueOf('PROXY_PASS'));
+	if (Config::ValueOf('proxy_use_auth') == true) {
+		$proxy_auth = base64_encode(Config::ValueOf('proxy_user').':'.Config::ValueOf('proxy_pass'));
 		$proxy_settings['header'] = "Proxy-Authorization: Basic ".$proxy_auth;
 	}
 	stream_context_set_default (['http' => $proxy_settings]);

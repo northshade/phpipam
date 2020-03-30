@@ -160,10 +160,10 @@ $gmaps_api_geocode_key = "";
  * proxy connection details
  ******************************/
 $proxy_enabled  = false;                                  // Enable/Disable usage of the Proxy server
-$proxy_server   = 'myproxy.something.com';                // Proxy server FQDN or IP
-$proxy_port     = '8080';                                 // Proxy server port
-$proxy_user     = 'USERNAME';                             // Proxy Username
-$proxy_pass     = 'PASSWORD';                             // Proxy Password
+$proxy_server   = '';                                     // Proxy server FQDN or IP
+$proxy_port     = '';                                     // Proxy server port
+$proxy_user     = '';                                     // Proxy Username
+$proxy_pass     = '';                                     // Proxy Password
 $proxy_use_auth = false;                                  // Enable/Disable Proxy authentication
 
 /**

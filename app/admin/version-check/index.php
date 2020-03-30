@@ -103,7 +103,7 @@ if (VERSION_VISIBLE > $version) {
 			print escape_input($out['author'])." <span class='text-muted'>(pushed on ".escape_input($out['date']).")</span>";
 			print "<div style='padding:10px;max-width:400px;border-radius:6px;border:1px solid #ddd;'>".$lines."</div>";
 			// tag
-			print "<a class='btn btn-xs btn-default' style='margin-top:3px;' href='https://github.com/phpipam/phpipam/commit/$out[commit]' target='_blank'>View</a>";
+			print "<a class='btn btn-xs btn-default' style='margin-top:3px;' href='https://github.com/northsahde/phpipam/commit/$out[commit]' target='_blank'>View</a>";
 			print "</div>";
 		}
 	}
