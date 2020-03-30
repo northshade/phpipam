@@ -47,6 +47,7 @@ RUN apk --no-cache add php7 \
   php7-simplexml \
   php7-gettext \
   php7-pcntl \
+  php7-posix \
   php7-pear \
   php7-cli \
   php7-iconv \
@@ -54,6 +55,7 @@ RUN apk --no-cache add php7 \
   nginx \
   supervisor \
   curl \
+  fping \
   git
 
 # Configure nginx
