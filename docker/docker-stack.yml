@@ -50,7 +50,19 @@ services:
       backend:
         aliases:
           - phpipam
-
+  cron:
+    image: phpipam/phpipam-cron:1.4x
+    deploy:
+      placement:
+        constraints:
+          - node.platform.os == linux
+          - node.platform.arch == x86_64
+    environment:
+      - TZ=Americas/New_York
+      - IPAM_DATABASE_HOST=db
+      - IPAM_DATABASE_PASS=CHANGEME
+      - SCAN_INTERVAL=1h
+          
 networks:
   backend:
     driver: overlay
